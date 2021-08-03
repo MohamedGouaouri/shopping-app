@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/models/product.dart';
 import 'package:shopping_app/views/cart.dart';
+import 'package:shopping_app/views/product_details.dart';
 
 class ProductsHome extends StatefulWidget {
   const ProductsHome({Key? key}) : super(key: key);
@@ -31,9 +32,11 @@ class _ProductsHomeState extends State<ProductsHome> {
   // Todo: Implement onClickProduct
   // Show product details
 
-  _showDetails() {}
-
-  _addToCart() {}
+  _showDetails() {
+    print("Show detaills");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => ProductDetailsPage()));
+  }
 
   List<Widget> _buildProductListItem() {
     List<Widget> productItems = [];
@@ -57,9 +60,10 @@ class _ProductsHomeState extends State<ProductsHome> {
               title: Text(p.name),
               subtitle: Text("\$${p.price}"),
               //isThreeLine: true,
-              onTap: () => _showDetails,
+              onTap: _showDetails,
               trailing: IconButton(
-                onPressed: _addToCart,
+                // add to cart
+                onPressed: () {},
                 icon: Icon(Icons.add),
               )),
         ),
