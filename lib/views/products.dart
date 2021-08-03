@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/models/product.dart';
 import 'package:shopping_app/views/cart.dart';
 
 class ProductsHome extends StatefulWidget {
@@ -9,11 +10,64 @@ class ProductsHome extends StatefulWidget {
 }
 
 class _ProductsHomeState extends State<ProductsHome> {
-  _addToCart() {
+  // Dummy data for UI testing
+  List<Product> products = [
+    Product(id: 1, name: "A", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "B", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "C", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "D", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "E", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "F", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
+  ];
+
+  // todo: Implement showCart
+  _showCart() {
     Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
   }
 
-  _onClickProduct() {}
+  // Todo: Implement onClickProduct
+  // Show product details
+
+  _showDetails() {}
+
+  _addToCart() {}
+
+  List<Widget> _buildProductListItem() {
+    List<Widget> productItems = [];
+    for (var p in products) {
+      productItems.add(
+        Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                )
+              ]),
+          child: ListTile(
+              leading: Text("Item icon"),
+              title: Text(p.name),
+              subtitle: Text("\$${p.price}"),
+              //isThreeLine: true,
+              onTap: () => _showDetails,
+              trailing: IconButton(
+                onPressed: _addToCart,
+                icon: Icon(Icons.add),
+              )),
+        ),
+      );
+    }
+    return productItems;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,79 +76,13 @@ class _ProductsHomeState extends State<ProductsHome> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: _addToCart,
+            onPressed: _showCart,
             icon: Icon(Icons.shopping_cart),
           )
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
-        children: [
-          Container(
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  )
-                ]),
-            child: ListTile(
-              leading: Text("Item icon"),
-              title: Text("Iot Device"),
-              subtitle: Text("\$200"),
-              isThreeLine: true,
-              onTap: () => _onClickProduct,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  )
-                ]),
-            child: ListTile(
-              leading: Text("Item icon"),
-              title: Text("Iot Device"),
-              subtitle: Text("\$200"),
-              isThreeLine: true,
-              onTap: () => _onClickProduct,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  )
-                ]),
-            child: ListTile(
-              leading: Text("Item icon"),
-              title: Text("Iot Device"),
-              subtitle: Text("\$200"),
-              isThreeLine: true,
-              onTap: () => _onClickProduct,
-            ),
-          ),
-        ],
-      ),
+          padding: EdgeInsets.all(10), children: _buildProductListItem()),
     );
   }
 }
