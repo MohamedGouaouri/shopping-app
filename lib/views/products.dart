@@ -13,15 +13,15 @@ class ProductsHome extends StatefulWidget {
 class _ProductsHomeState extends State<ProductsHome> {
   // Dummy data for UI testing
   List<Product> products = [
-    Product(id: 1, name: "A", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "B", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "C", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "D", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "E", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "F", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA"),
+    Product(id: 1, name: "A", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "B", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "C", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "D", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "E", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "F", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
   ];
 
   // todo: Implement showCart
@@ -33,7 +33,6 @@ class _ProductsHomeState extends State<ProductsHome> {
   // Show product details
 
   _showDetails() {
-    print("Show detaills");
     Navigator.push(
         context, MaterialPageRoute(builder: (_) => ProductDetailsPage()));
   }
@@ -87,6 +86,24 @@ class _ProductsHomeState extends State<ProductsHome> {
       ),
       body: ListView(
           padding: EdgeInsets.all(10), children: _buildProductListItem()),
+
+      // This is just fun it must not be implemented
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: "Cart",
+            icon: Icon(Icons.shopping_cart_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Settings",
+            icon: Icon(Icons.settings),
+          ),
+        ],
+      ),
     );
   }
 }

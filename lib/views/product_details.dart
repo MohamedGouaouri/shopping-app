@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/views/cart.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
@@ -8,6 +9,10 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  _showCart() {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         actions: [
           IconButton(
             // add to cart
-            onPressed: () {},
+            onPressed: _showCart,
             icon: Icon(Icons.shopping_cart),
           )
         ],
@@ -40,36 +45,61 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
-                  blurRadius: 7,
+                  blurRadius: 5,
                   offset: Offset(0, 3),
                 )
               ],
             ),
             child: Column(
               children: [
-                // row cotaining product name and price
                 Container(
                   margin: EdgeInsets.all(10),
+                  child: Text(
+                    "GPU",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Container(
+                  // row cotaining product  price and rate
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("GPU",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("\$1000000"),
+                      Text(
+                        "\$1000000",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "4.4",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.star_rate,
+                            color: Colors.yellow,
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.all(20),
                   child: Text(
-                      "Product description hereAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"),
+                      "Product description here AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"),
                 )
               ],
             ),
           ),
+
+          // Add to cart button
           Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
             height: 60.0,
