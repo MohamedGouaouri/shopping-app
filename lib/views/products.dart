@@ -13,15 +13,69 @@ class ProductsHome extends StatefulWidget {
 class _ProductsHomeState extends State<ProductsHome> {
   // Dummy data for UI testing
   List<Product> products = [
-    Product(id: 1, name: "A", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "B", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "C", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "D", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "E", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "F", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
-    Product(id: 1, name: "G", price: 200.0, description: "AAAAAAA", rate: 4.4),
+    Product(
+        id: 1,
+        name: "A",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "B",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "C",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "D",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "E",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "F",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "G",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "G",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
+    Product(
+        id: 1,
+        name: "G",
+        price: 200.0,
+        description: "AAAAAAA",
+        rate: 4.4,
+        number: 1),
   ];
 
   // todo: Implement showCart
