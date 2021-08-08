@@ -49,7 +49,12 @@ class _CartPageState extends State<CartPage> {
               Container(
                 width: _width / 6,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO: Remove using the
+                    setState(() {
+                      products.removeAt(products.indexOf(p));
+                    });
+                  },
                   icon: Icon(
                     Icons.delete,
                   ),
@@ -105,11 +110,20 @@ class _CartPageState extends State<CartPage> {
       appBar: AppBar(
         title: Text("Your cart"),
         centerTitle: true,
-        actions: [],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.payment,
+            ),
+          )
+        ],
       ),
-      body: ListView(
-        children: _buildCartProductsItem(_width),
-      ),
+      body: products.length != 0
+          ? ListView(children: _buildCartProductsItem(_width))
+          : Center(
+              child: Text("Your cart is empty"),
+            ),
     );
   }
 }
