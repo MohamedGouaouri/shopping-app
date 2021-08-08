@@ -11,7 +11,10 @@ class ProductsHome extends StatefulWidget {
 }
 
 class _ProductsHomeState extends State<ProductsHome> {
-  // Dummy data for UI testing
+  int _currentNavigationIndex = 0;
+
+  // Dummy data for UI testing, it will replaced by the data
+  // fetched from the API
   List<Product> products = [
     Product(
         id: 1,
@@ -78,17 +81,17 @@ class _ProductsHomeState extends State<ProductsHome> {
         number: 1),
   ];
 
-  // todo: Implement showCart
+  /// Show user's cart
   _showCart() {
     Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
   }
 
-  // Todo: Implement onClickProduct
-  // Show product details
+  // Show product details by passing the product object
 
-  _showDetails() {
+  _showDetails(Product p) {
+    print(p.name);
     Navigator.push(
-        context, MaterialPageRoute(builder: (_) => ProductDetailsPage()));
+        context, MaterialPageRoute(builder: (_) => ProductDetailsPage(p)));
   }
 
   List<Widget> _buildProductListItem() {
@@ -109,16 +112,12 @@ class _ProductsHomeState extends State<ProductsHome> {
                 )
               ]),
           child: ListTile(
-              leading: Text("Item icon"),
-              title: Text(p.name),
-              subtitle: Text("\$${p.price}"),
-              //isThreeLine: true,
-              onTap: _showDetails,
-              trailing: IconButton(
-                // add to cart
-                onPressed: () {},
-                icon: Icon(Icons.add),
-              )),
+            leading: Text("Item icon"),
+            title: Text(p.name),
+            subtitle: Text("\$${p.price}"),
+            //isThreeLine: true,
+            onTap: () => _showDetails(p),
+          ),
         ),
       );
     }
@@ -143,6 +142,7 @@ class _ProductsHomeState extends State<ProductsHome> {
 
       // This is just fun it must not be implemented
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentNavigationIndex,
         items: [
           BottomNavigationBarItem(
             label: "Home",
@@ -151,12 +151,15 @@ class _ProductsHomeState extends State<ProductsHome> {
           BottomNavigationBarItem(
             label: "Cart",
             icon: Icon(Icons.shopping_cart_rounded),
-          ),
-          BottomNavigationBarItem(
-            label: "Settings",
-            icon: Icon(Icons.settings),
-          ),
+          )
         ],
+        onTap: (idx) {
+          if (idx != _currentNavigationIndex) {
+            setState(() {
+              _currentNavigationIndex = idx;
+            });
+          }
+        },
       ),
     );
   }

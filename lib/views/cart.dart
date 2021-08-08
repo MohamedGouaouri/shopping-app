@@ -9,6 +9,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  // these data need to be fetched from  the API that I will design
   List<Product> products = [
     Product(
         id: 1,

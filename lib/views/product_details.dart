@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/models/product.dart';
 import 'package:shopping_app/views/cart.dart';
 
 class ProductDetailsPage extends StatefulWidget {
-  const ProductDetailsPage({Key? key}) : super(key: key);
+  final Product product;
+  ProductDetailsPage(this.product, {Key? key}) : super(key: key);
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  // the same as show cart in the home screen
   _showCart() {
     Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
   }
@@ -32,6 +35,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           // Product image
+          // TODO: Raplace it with Image.network(${widget.product.imagePath})
           Image.network(
               "https://c1.neweggimages.com/ProductImageCompressAll1280/14-487-488-V01.jpg",
               height: 300),
@@ -55,7 +59,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    "GPU",
+                    widget.product.name,
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -68,7 +72,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "\$1000000",
+                        "\$${widget.product.price}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -76,7 +80,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       Row(
                         children: [
                           Text(
-                            "4.4",
+                            "${widget.product.rate}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -93,7 +97,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 Container(
                   margin: EdgeInsets.all(20),
                   child: Text(
-                      "Product description here AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"),
+                    widget.product.description,
+                  ),
                 )
               ],
             ),
