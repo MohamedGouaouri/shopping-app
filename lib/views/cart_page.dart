@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/models/cart.dart';
 import 'package:shopping_app/models/product.dart';
 
 class CartPage extends StatefulWidget {
@@ -10,26 +11,11 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   // these data need to be fetched from  the API that I will design
-  List<Product> products = [
-    Product(
-        id: 1,
-        name: "A",
-        price: 200.0,
-        description: "AAAAAAA",
-        rate: 4.4,
-        number: 1),
-    Product(
-        id: 1,
-        name: "B",
-        price: 200.0,
-        description: "AAAAAAA",
-        rate: 4.4,
-        number: 1),
-  ];
+  Cart cart = Cart(products: []);
 
   _buildCartProductsItem(double _width) {
     List<Widget> widgets = [];
-    for (var p in products) {
+    for (var p in cart.products) {
       widgets.add(
         Container(
           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -50,9 +36,8 @@ class _CartPageState extends State<CartPage> {
                 width: _width / 6,
                 child: IconButton(
                   onPressed: () {
-                    // TODO: Remove using the
                     setState(() {
-                      products.removeAt(products.indexOf(p));
+                      cart.products.removeAt(cart.products.indexOf(p));
                     });
                   },
                   icon: Icon(
@@ -119,7 +104,7 @@ class _CartPageState extends State<CartPage> {
           )
         ],
       ),
-      body: products.length != 0
+      body: cart.products.length != 0
           ? ListView(children: _buildCartProductsItem(_width))
           : Center(
               child: Text("Your cart is empty"),

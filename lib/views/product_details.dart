@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/models/product.dart';
-import 'package:shopping_app/views/cart.dart';
+import 'package:shopping_app/views/cart_page.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
@@ -14,6 +14,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   // the same as show cart in the home screen
   _showCart() {
     Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
+  }
+
+  _addProductToCart() {
+    var product = widget.product;
   }
 
   @override
@@ -34,8 +38,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Product image
-          // TODO: Raplace it with Image.network(${widget.product.imagePath})
           Image.network(widget.product.pathToimage!, height: 300),
 
           // Product description
@@ -112,7 +114,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(30.0)),
             child: TextButton(
-              onPressed: () {},
+              onPressed: _addProductToCart,
               child: Text(
                 "Add to cart",
                 style: TextStyle(fontSize: 18.0, color: Colors.white),

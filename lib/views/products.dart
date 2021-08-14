@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/controllers/api_client.dart';
 import 'package:shopping_app/models/product.dart';
-import 'package:shopping_app/views/cart.dart';
+import 'package:shopping_app/views/cart_page.dart';
 import 'package:shopping_app/views/product_details.dart';
 
 class ProductsHome extends StatefulWidget {
