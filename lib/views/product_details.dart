@@ -36,9 +36,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         children: [
           // Product image
           // TODO: Raplace it with Image.network(${widget.product.imagePath})
-          Image.network(
-              "https://c1.neweggimages.com/ProductImageCompressAll1280/14-487-488-V01.jpg",
-              height: 300),
+          Image.network(widget.product.pathToimage!, height: 300),
 
           // Product description
           Container(

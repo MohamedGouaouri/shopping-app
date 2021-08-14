@@ -28,7 +28,7 @@ class _ProductsHomeState extends State<ProductsHome> {
   }
 
   Future<List<Product>> _fetchProducts() async {
-    List<Product> products = await fetchAllProducts("192.168.1.36", "8000");
+    List<Product> products = await fetchAllProducts("127.0.0.1", 8000);
     print(products.length);
     return products;
   }
@@ -87,7 +87,7 @@ class _ProductsHomeState extends State<ProductsHome> {
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  var p = snapshot.data;
+                  var p = snapshot.data[index];
                   return Container(
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -102,7 +102,11 @@ class _ProductsHomeState extends State<ProductsHome> {
                           )
                         ]),
                     child: ListTile(
-                      leading: Text("Item icon"),
+                      leading: Image.network(
+                        p.pathToimage,
+                        height: 100,
+                        width: 100,
+                      ),
                       title: Text(p.name),
                       subtitle: Text("\$${p.price}"),
                       //isThreeLine: true,

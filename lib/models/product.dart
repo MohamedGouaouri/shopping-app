@@ -13,10 +13,11 @@ class Product {
       required this.price,
       required this.rate,
       required this.description,
-      required this.number});
+      required this.number,
+      this.pathToimage});
 
   /// Loads API product to Dart client product model
-  static Product loadApiProduct(Map apiProduct) {
+  static loadApiProduct(Map apiProduct) {
     return Product(
         id: apiProduct['id'],
         name: apiProduct['title'],
