@@ -29,3 +29,31 @@ Future<List<Product>> fetchAllProducts(String host, int port) async {
 
   return productsList;
 }
+
+Future<List<Product>> fetchCartProducts(
+    int cartId, String host, int port) async {
+  final String endpointUrl = "http://$host:$port/products/api/getCart/$cartId";
+  var url = Uri.parse(endpointUrl);
+
+  var apiCartProductsResponse = await http.get(url);
+
+  List apiCartProducts = jsonDecode(apiCartProductsResponse.body);
+  List<Product> productsList = [];
+  var product;
+  for (var i = 0; i < apiCartProducts.length; i++) {
+    product = Product(
+        id: apiCartProducts[i]['id'],
+        name: apiCartProducts[i]['title'],
+        price: apiCartProducts[i]['price'],
+        rate: apiCartProducts[i]['rating'] != null
+            ? apiCartProducts[i]['rating']
+            : 0,
+        description: apiCartProducts[i]['description'],
+        number: apiCartProducts[i]['quantity'],
+        pathToimage: apiCartProducts[i]['image_url']);
+
+    productsList.add(product);
+  }
+
+  return productsList;
+}
